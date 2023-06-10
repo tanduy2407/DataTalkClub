@@ -22,14 +22,18 @@ def main(params):
 	# connect to postgres db
 	engine = create_engine(
 		f'postgresql://{user}:{password}@{host}:{port}/{database}')
-	engine_postgre = engine.connect()
 	sql = pd.io.sql.get_schema(df, f'{table}', con=engine)
-	engine.execute(sql)
+	with engine.connect() as conn:
+		try:
+			conn.execute(sql)
+		except:
+			pass
 
 	# insert data
 	print(f'Ingest data to table: {table}')
-	df.to_sql(name=f'{table}', if_exists='append',
-			  con=engine_postgre, index=False, chunksize=100000)
+	df.to_sql(name=f'{table}', if_exists='replace',
+			  con=engine, index=False, chunksize=100000)
+	print('Insert done')
 
 
 if __name__ == '__main__':
