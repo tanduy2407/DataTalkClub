@@ -32,7 +32,7 @@ def main(params):
 	# insert data
 	print(f'Ingest data to table: {table}')
 	df.to_sql(name=f'{table}', if_exists='replace',
-			  con=engine, index=False, chunksize=100000)
+			  con=engine, index=False)
 	print('Insert done')
 
 
