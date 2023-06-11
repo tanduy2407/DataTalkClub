@@ -3,3 +3,8 @@
 ################################################################################
 
 google-cloud-sdk/
+sql_docker/ny_taxi_postgres_data
+*.csv
+*.json
+*.zip
+*.txt
