@@ -1,0 +1,8 @@
+version: 2
+sources:
+  - name: staging
+    database: dbt_production
+    schema: public
+    tables:
+    - name: ny_yellow_trip_2020 
+    - name: ny_green_trip_2020 
